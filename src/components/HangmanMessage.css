@@ -1,0 +1,18 @@
+.HangmanMessage {
+    font-size: 1em;
+    font-family: fantasy;
+}
+
+.inGame {
+    color: black;
+}
+
+.wonGame {
+    font-size: 1.2em;
+    color: green;
+}
+
+.lostGame {
+    font-size: 1.2em;
+    color: red;
+}

@@ -1,0 +1,35 @@
+.HangmanLetters {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.HangmanLetter {
+    width: 7%; /* To get 13 letters per line */
+    background-color: #5b6066;
+    -webkit-border-radius: 5;
+    -moz-border-radius: 5;
+    border-radius: 5px;
+    font-family: Courier New;
+    color: #ffffff;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    margin: 1px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.HangmanLetter:hover {
+    background-color: #195f8a;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.disabled {
+    background-color: #d1d1d1;
+}
+
+.disabled:hover {
+    background-color: #d1d1d1;
+    cursor: not-allowed;
+}
