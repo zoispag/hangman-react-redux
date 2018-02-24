@@ -3,15 +3,25 @@ import PropTypes from 'prop-types';
 import './HangmanLetters.css';
 
 class HangmanLetters extends Component {
+    constructor(props) {
+        super(props);
+        
+        this.handleLetter = this.handleLetter.bind(this);
+    }
+
     static propTypes = {
-        used: PropTypes.arrayOf(PropTypes.string)
+        letters: PropTypes.arrayOf(PropTypes.string)
     }
 
     static defaultProps = {
-        used: []
+        onClick() {}
+    }
+    
+    handleLetter(e) {
+        this.props.onClick(e.target.name);
     }
 
-    static letters = [
+    static allLetters = [
         'a', 'b', 'c', 'd', 'e', 'f',
         'g', 'h', 'i', 'j', 'k', 'l',
         'm', 'n', 'o', 'p', 'q', 'r',
@@ -20,12 +30,14 @@ class HangmanLetters extends Component {
     ];
 
     render () {
-        const used = this.props.used.map(letter => letter);
-        const letterButtons = HangmanLetters.letters.map((letter, index) => (
+        const { letters } = this.props;
+        const letterButtons = HangmanLetters.allLetters.map(letter => (
             <button
-                className={`HangmanLetter${ used.includes(letter) ? ' disabled' : '' }`}
-                disabled={used.includes(letter)}
-                key={index}
+                className={`HangmanLetter${ letters.includes(letter) ? ' disabled' : '' }`}
+                disabled={letters.includes(letter)}
+                key={letter}
+                name={letter}
+                onClick={this.handleLetter}
             >{letter.toUpperCase()}</button>
         ));
         return (<div className="HangmanLetters">

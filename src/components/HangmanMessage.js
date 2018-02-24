@@ -7,17 +7,12 @@ class HangmanMessage extends Component {
         status: PropTypes.number.isRequired
     }
 
-    static defaultProps = {
-        status: 0
-    }
-
     render () {
         const gameCondition = [
             ['Please select a letter..', 'inGame'],
             ['Congrats, you won!', 'wonGame'],
             ['Game over!', 'lostGame'],
         ]
-        const message = 'Please select a letter..';
         const gameStatus = this.props.status < 6 ? gameCondition[0] : gameCondition[2];
         return (<div>
                     <p

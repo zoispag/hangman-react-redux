@@ -8,11 +8,6 @@ class HangmanWord extends Component {
         letters: PropTypes.arrayOf(PropTypes.string)
     }
 
-    static defaultProps = {
-        word: '',
-        letters: []
-    }
-
     render () {
         const displayWord = this.props.word.split('').map(letter => (this.props.letters.includes(letter) ? letter : '_')).join(' ');
         return (<div className="HangmanWordContainer">

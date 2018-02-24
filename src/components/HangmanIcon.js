@@ -7,10 +7,6 @@ class HangmanIcon extends Component {
         status: PropTypes.number.isRequired
     }
 
-    static defaultProps = {
-        status: 0
-    }
-
     render () {
         return (<div>
                     <img alt='hangman'
