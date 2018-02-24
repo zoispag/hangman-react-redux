@@ -10,7 +10,8 @@ class HangmanLetters extends Component {
     }
 
     static propTypes = {
-        letters: PropTypes.arrayOf(PropTypes.string)
+        letters: PropTypes.arrayOf(PropTypes.string),
+        onClick: PropTypes.func
     }
 
     static defaultProps = {
@@ -33,6 +34,7 @@ class HangmanLetters extends Component {
         const { letters } = this.props;
         const letterButtons = HangmanLetters.allLetters.map(letter => (
             <button
+                type="button"
                 className={`HangmanLetter${ letters.includes(letter) ? ' disabled' : '' }`}
                 disabled={letters.includes(letter)}
                 key={letter}
