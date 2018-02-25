@@ -8,26 +8,27 @@ import HangmanMessage from './components/HangmanMessage';
 
 class Hangman extends Component {
 
-  render() {
-    const { word, letters, handleLetter } = this.props;
-    const wrongLettersCount = letters.filter(letter => !word.split('').includes(letter)).length;
-    const gameIsWon = word.split('').filter(letter => letters.includes(letter)).length == word.split('').length;
-    const gameIsActive = !gameIsWon && wrongLettersCount < 6;
-    const gameCondition = gameIsActive ? 0 : (gameIsWon ? 1 : 2);
-    return (
-      <div className="Hangman">
-        <HangmanIcon count={wrongLettersCount} />
-        <HangmanWord word={word} letters={letters} />
-        <HangmanLetters letters={letters} gamehasEnded={!gameIsActive} />
-        <HangmanMessage conditionIndex={gameCondition} word={word} />
-      </div>
-    );
-  }
+    render() {
+        const { word, letters } = this.props;
+        const wrongLettersCount = letters.filter(letter => !word.split('').includes(letter)).length;
+        const gameIsWon = word.split('').filter(letter => letters.includes(letter)).length === word.split('').length;
+        const gameIsActive = !gameIsWon && wrongLettersCount < 6;
+        const gameCondition = gameIsActive ? 0 : (gameIsWon ? 1 : 2);
+        return (
+            <div className="Hangman">
+                <HangmanIcon count={wrongLettersCount} />
+                <HangmanWord word={word} letters={letters} />
+                <HangmanLetters letters={letters} gamehasEnded={!gameIsActive} />
+                <HangmanMessage conditionIndex={gameCondition} word={word} />
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = state => ({
-  word: state.word,
-  letters: state.letters
+    word: state.word,
+    letters: state.letters
 });
 
-export default connect(mapStateToProps, null) (Hangman);
+export default
+    connect(mapStateToProps, null) (Hangman);

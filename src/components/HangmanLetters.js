@@ -7,12 +7,8 @@ class HangmanLetters extends Component {
 
     static propTypes = {
         letters: PropTypes.arrayOf(PropTypes.string),
-        onClick: PropTypes.func,
+        handleLetter: PropTypes.func.isRequired,
         gamehasEnded: PropTypes.bool.isRequired
-    }
-
-    static defaultProps = {
-        onClick() {}
     }
 
     static allLetters = [
@@ -42,7 +38,7 @@ class HangmanLetters extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch) => ({
     handleLetter: (letter) => (dispatch({type: "HANDLE_LETTER", letter: letter}))
 });
 

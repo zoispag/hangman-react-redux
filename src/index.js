@@ -14,6 +14,8 @@ const state = {
     letters: []
 };
 
+console.log(state.word);
+
 const store = createStore(rootReducer, state);
 
 ReactDOM.render(
