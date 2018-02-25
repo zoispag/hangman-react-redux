@@ -4,7 +4,7 @@ import './HangmanMessage.css';
 
 class HangmanMessage extends Component {
     static propTypes = {
-        status: PropTypes.number.isRequired
+        conditionIndex: PropTypes.number.isRequired
     }
 
     render () {
@@ -13,7 +13,8 @@ class HangmanMessage extends Component {
             ['Congrats, you won!', 'wonGame'],
             ['Game over!', 'lostGame'],
         ]
-        const gameStatus = this.props.status < 6 ? gameCondition[0] : gameCondition[2];
+        
+        const gameStatus = gameCondition[this.props.conditionIndex];
         return (<div>
                     <p
                         className={`HangmanMessage ${gameStatus[1]}`}

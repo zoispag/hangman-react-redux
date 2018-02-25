@@ -1,25 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './HangmanLetters.css';
 
 class HangmanLetters extends Component {
-    constructor(props) {
-        super(props);
-        
-        this.handleLetter = this.handleLetter.bind(this);
-    }
 
     static propTypes = {
         letters: PropTypes.arrayOf(PropTypes.string),
-        onClick: PropTypes.func
+        onClick: PropTypes.func,
+        gamehasEnded: PropTypes.bool.isRequired
     }
 
     static defaultProps = {
         onClick() {}
-    }
-    
-    handleLetter(e) {
-        this.props.onClick(e.target.name);
     }
 
     static allLetters = [
@@ -31,15 +24,16 @@ class HangmanLetters extends Component {
     ];
 
     render () {
-        const { letters } = this.props;
+        const { letters, handleLetter } = this.props;
         const letterButtons = HangmanLetters.allLetters.map(letter => (
             <button
                 type="button"
-                className={`HangmanLetter${ letters.includes(letter) ? ' disabled' : '' }`}
-                disabled={letters.includes(letter)}
+                className={`HangmanLetter${ letters.includes(letter) || this.props.gamehasEnded ? ' disabled' : '' }`}
+                disabled={letters.includes(letter) || this.props.gamehasEnded}
                 key={letter}
                 name={letter}
-                onClick={this.handleLetter}
+                onClick={() => handleLetter(letter)}
+                
             >{letter.toUpperCase()}</button>
         ));
         return (<div className="HangmanLetters">
@@ -48,4 +42,9 @@ class HangmanLetters extends Component {
     }
 }
 
-export default HangmanLetters;
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    handleLetter: (letter) => (dispatch({type: "HANDLE_LETTER", letter: letter}))
+});
+
+export default
+    connect(null, mapDispatchToProps)(HangmanLetters);

@@ -4,13 +4,13 @@ import './HangmanIcon.css';
 
 class HangmanIcon extends Component {
     static propTypes = {
-        status: PropTypes.number.isRequired
+        count: PropTypes.number.isRequired
     }
 
     render () {
         return (<div>
                     <img alt='hangman'
-                         src={'images/hangman-icon/hangman'+ this.props.status + '.png'} />
+                         src={'images/hangman-icon/hangman'+ this.props.count + '.png'} />
                 </div>);
     }
 }

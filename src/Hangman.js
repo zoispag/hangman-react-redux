@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import './Hangman.css';
 import HangmanIcon from './components/HangmanIcon';
 import HangmanWord from './components/HangmanWord';
@@ -7,41 +8,26 @@ import HangmanMessage from './components/HangmanMessage';
 
 class Hangman extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      word: this.getRandomWord(),
-      letters: []
-    };
-    
-    this.handleLetter = this.handleLetter.bind(this);
-  }
-  
-  getRandomWord() {
-    return this.props.availableWords[Math.floor(Math.random() * this.props.availableWords.length)];
-  }
-  
-  handleLetter(letter) {
-    const letters = [...this.state.letters, letter];
-    this.setState({letters});
-  }
-
   render() {
-    const status = this.state.letters.filter(letter => !this.state.word.split('').includes(letter)).length;
+    const { word, letters, handleLetter } = this.props;
+    const wrongLettersCount = letters.filter(letter => !word.split('').includes(letter)).length;
+    const gameIsWon = word.split('').filter(letter => letters.includes(letter)).length == word.split('').length;
+    const gameIsActive = !gameIsWon && wrongLettersCount < 6;
+    const gameCondition = gameIsActive ? 0 : (gameIsWon ? 1 : 2);
     return (
       <div className="Hangman">
-        Hello Hangman!
-        <HangmanIcon status={status} />
-        <HangmanWord word={this.state.word} letters={this.state.letters} />
-        <HangmanLetters letters={this.state.letters} onClick={this.handleLetter} />
-        <HangmanMessage status={status} />
+        <HangmanIcon count={wrongLettersCount} />
+        <HangmanWord word={word} letters={letters} />
+        <HangmanLetters letters={letters} onClick={handleLetter} gamehasEnded={!gameIsActive} />
+        <HangmanMessage conditionIndex={gameCondition} />
       </div>
     );
   }
 }
 
-Hangman.defaultProps = {
-  availableWords: ['developer', 'fideloper']
-}
+const mapStateToProps = state => ({
+  word: state.word,
+  letters: state.letters
+});
 
-export default Hangman;
+export default connect(mapStateToProps, null) (Hangman);
