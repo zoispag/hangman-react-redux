@@ -18,7 +18,7 @@ class Hangman extends Component {
       <div className="Hangman">
         <HangmanIcon count={wrongLettersCount} />
         <HangmanWord word={word} letters={letters} />
-        <HangmanLetters letters={letters} onClick={handleLetter} gamehasEnded={!gameIsActive} />
+        <HangmanLetters letters={letters} gamehasEnded={!gameIsActive} />
         <HangmanMessage conditionIndex={gameCondition} word={word} />
       </div>
     );
