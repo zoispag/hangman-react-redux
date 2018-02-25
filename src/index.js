@@ -7,10 +7,11 @@ import './index.css';
 import Hangman from './Hangman';
 import registerServiceWorker from './registerServiceWorker';
 
-const availableWords = ['developer', 'fideloper'];
+var chance = require('chance').Chance();
+const availableWords = ['developer', 'fideloper', ''];
 
 const state = {
-    word: availableWords[Math.floor(Math.random() * availableWords.length)],
+    word: chance.word({length: Math.floor(Math.random() * 5) + 5}),
     letters: []
 };
 
