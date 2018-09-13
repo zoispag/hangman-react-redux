@@ -7,3 +7,14 @@
     justify-content: center;
     flex-direction: column;
 }
+
+.title {
+    font-family: fantasy;
+    font-size: 3em;
+    letter-spacing: 0.05em;
+}
+
+.red {
+    color: red;
+    font-size: 1.2em;
+}

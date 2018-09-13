@@ -1,0 +1,7 @@
+.rst-btn {
+    -webkit-border-radius: 5;
+    -moz-border-radius: 5;
+    border-radius: 5px;
+    margin: 1px;
+    text-decoration: none;
+}
